@@ -22,12 +22,15 @@
       padding: 2rem;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      transform-origin: center;
+      animation: container-enter 450ms ease;
     }
 
     .message {
       margin: 1rem 0;
       font-size: 1.2rem;
       min-height: 1.5em;
+      transition: color 200ms ease, transform 220ms ease;
     }
 
     input {
@@ -35,6 +38,7 @@
       font-size: 1rem;
       width: 100px;
       margin: 0.5rem;
+      transition: box-shadow 180ms ease, transform 180ms ease;
     }
 
     button {
@@ -45,10 +49,13 @@
       border: none;
       border-radius: 5px;
       cursor: pointer;
+      transition: transform 140ms ease, box-shadow 140ms ease, opacity 160ms ease;
     }
 
     button:hover {
       background-color: #45a049;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
     }
 
     button:disabled {
@@ -60,10 +67,227 @@
       color: #666;
       margin-top: 1rem;
     }
+
+
+    @keyframes container-enter {
+      from {
+        transform: translateY(12px) scale(.98);
+        opacity: 0
+      }
+
+      to {
+        transform: translateY(0) scale(1);
+        opacity: 1
+      }
+    }
+
+    @keyframes pop {
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.08);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 rgba(76, 175, 80, 0.0);
+      }
+
+      50% {
+        box-shadow: 0 0 24px rgba(76, 175, 80, 0.18);
+      }
+
+      100% {
+        box-shadow: 0 0 0 rgba(76, 175, 80, 0.0);
+      }
+    }
+
+    @keyframes shake {
+      0% {
+        transform: translateX(0);
+      }
+
+      20% {
+        transform: translateX(-8px);
+      }
+
+      40% {
+        transform: translateX(8px);
+      }
+
+      60% {
+        transform: translateX(-5px);
+      }
+
+      80% {
+        transform: translateX(3px);
+      }
+
+      100% {
+        transform: translateX(0);
+      }
+    }
+
+    .anim-pop {
+      animation: pop 260ms ease;
+    }
+
+    .anim-pulse {
+      animation: pulse 800ms ease;
+    }
+
+    .anim-shake {
+      animation: shake 360ms ease;
+    }
+
+    
+    .bg-animated {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .bg-shape {
+      position: absolute;
+      will-change: transform, opacity, filter;
+      filter: blur(36px);
+      opacity: 0.7;
+      mix-blend-mode: screen;
+      transform-origin: center;
+    }
+
+    .bg-shape.shape1 {
+      width: 420px;
+      height: 420px;
+      left: -8%;
+      top: -6%;
+      background: radial-gradient(circle at 30% 30%, rgba(99, 102, 241, 0.9), rgba(37, 99, 235, 0.6) 60%, transparent 70%);
+      border-radius: 40% 60% 55% 45% / 50% 40% 60% 50%;
+      animation: floatA 14s ease-in-out infinite;
+    }
+
+    .bg-shape.shape2 {
+      width: 360px;
+      height: 360px;
+      right: -6%;
+      top: 6%;
+      background: radial-gradient(circle at 60% 40%, rgba(236, 72, 153, 0.9), rgba(236, 72, 153, 0.55) 55%, transparent 75%);
+      border-radius: 50% 40% 60% 50% / 45% 55% 40% 60%;
+      animation: floatB 18s ease-in-out infinite;
+    }
+
+    .bg-shape.shape3 {
+      width: 520px;
+      height: 520px;
+      left: 10%;
+      bottom: -14%;
+      background: radial-gradient(circle at 20% 70%, rgba(34, 197, 94, 0.85), rgba(16, 185, 129, 0.45) 60%, transparent 78%);
+      border-radius: 55% 45% 60% 40% / 50% 60% 40% 50%;
+      animation: floatC 20s ease-in-out infinite;
+    }
+
+    .bg-shape.shape4 {
+      width: 240px;
+      height: 240px;
+      right: 14%;
+      bottom: 6%;
+      background: radial-gradient(circle at 70% 30%, rgba(14, 165, 233, 0.9), rgba(14, 165, 233, 0.5) 55%, transparent 75%);
+      border-radius: 45% 55% 40% 60% / 60% 50% 65% 45%;
+      animation: floatD 12s ease-in-out infinite;
+    }
+
+    @keyframes floatA {
+      0% {
+        transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+      }
+
+      50% {
+        transform: translate3d(18px, 28px, 0) rotate(6deg) scale(1.04);
+      }
+
+      100% {
+        transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+      }
+    }
+
+    @keyframes floatB {
+      0% {
+        transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+      }
+
+      50% {
+        transform: translate3d(-26px, -18px, 0) rotate(-5deg) scale(1.03);
+      }
+
+      100% {
+        transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+      }
+    }
+
+    @keyframes floatC {
+      0% {
+        transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+      }
+
+      50% {
+        transform: translate3d(-32px, 22px, 0) rotate(4deg) scale(1.05);
+      }
+
+      100% {
+        transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+      }
+    }
+
+    @keyframes floatD {
+      0% {
+        transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+      }
+
+      50% {
+        transform: translate3d(12px, -22px, 0) rotate(8deg) scale(1.02);
+      }
+
+      100% {
+        transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+      }
+    }
+
+    
+    .container {
+      position: relative;
+      z-index: 2;
+    }
+
+    
+    @media (prefers-reduced-motion: reduce) {
+      .bg-shape {
+        animation: none !important;
+      }
+
+      .container {
+        animation: none !important;
+      }
+    }
   </style>
 </head>
 
 <body>
+ 
+  <div class="bg-animated" aria-hidden="true">
+    <div class="bg-shape shape1"></div>
+    <div class="bg-shape shape2"></div>
+    <div class="bg-shape shape3"></div>
+    <div class="bg-shape shape4"></div>
+  </div>
   <div class="container">
     <h1>Number Guessing Game</h1>
     <div id="difficulty-select" style="margin-bottom: 1rem;">
@@ -77,8 +301,7 @@
     <input type="number" id="guessInput" min="1" max="100" disabled>
     <button onclick="checkGuess()" id="guessButton" disabled>Guess</button>
     <div class="remaining" id="remaining"></div>
-    <button onclick="resetGame()" id="resetButton"
-      style="display: none; margin-top: 1rem; background-color: #2196F3;">Play Again</button>
+
   </div>
 
   <script src="script.js">

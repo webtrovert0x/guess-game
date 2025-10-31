@@ -24,18 +24,18 @@ function setDifficulty(difficulty) {
   currentDifficulty = difficulty;
   const settings = difficultySettings[difficulty];
 
-  // Update input range
+  
   const input = document.getElementById('guessInput');
   input.min = 1;
   input.max = settings.range;
   input.disabled = false;
 
-  // Update UI text
+  
   document.getElementById('range-text').textContent = `Try to guess the number between 1 and ${settings.range}!`;
   document.getElementById('guessButton').disabled = false;
   document.getElementById('message').textContent = 'Make your first guess!';
 
-  // Initialize the game with new settings
+  
   initGame();
 }
 
