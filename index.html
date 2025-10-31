@@ -66,17 +66,23 @@
 <body>
   <div class="container">
     <h1>Number Guessing Game</h1>
-    <p>Try to guess the number between 1 and 100!</p>
-    <div class="message" id="message">Make your first guess!</div>
-    <input type="number" id="guessInput" min="1" max="100">
-    <button onclick="checkGuess()" id="guessButton">Guess</button>
-    <div class="remaining" id="remaining">Remaining attempts: 10</div>
+    <div id="difficulty-select" style="margin-bottom: 1rem;">
+      <p>Select Difficulty:</p>
+      <button onclick="setDifficulty('easy')" style="background-color: #4CAF50;">Easy</button>
+      <button onclick="setDifficulty('medium')" style="background-color: #2196F3;">Medium</button>
+      <button onclick="setDifficulty('hard')" style="background-color: #f44336;">Hard</button>
+    </div>
+    <p id="range-text">Select a difficulty to start!</p>
+    <div class="message" id="message">Choose your difficulty level</div>
+    <input type="number" id="guessInput" min="1" max="100" disabled>
+    <button onclick="checkGuess()" id="guessButton" disabled>Guess</button>
+    <div class="remaining" id="remaining"></div>
     <button onclick="resetGame()" id="resetButton"
       style="display: none; margin-top: 1rem; background-color: #2196F3;">Play Again</button>
   </div>
 
   <script src="script.js">
-   
+
   </script>
 </body>
 

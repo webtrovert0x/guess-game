@@ -1,25 +1,70 @@
 let secretNumber;
 let attempts;
-const maxAttempts = 10;
+let currentDifficulty = null;
+
+const difficultySettings = {
+  easy: {
+    range: 50,
+    attempts: 10,
+    name: 'Easy'
+  },
+  medium: {
+    range: 100,
+    attempts: 10,
+    name: 'Medium'
+  },
+  hard: {
+    range: 200,
+    attempts: 10,
+    name: 'Hard'
+  }
+};
+
+function setDifficulty(difficulty) {
+  currentDifficulty = difficulty;
+  const settings = difficultySettings[difficulty];
+
+  // Update input range
+  const input = document.getElementById('guessInput');
+  input.min = 1;
+  input.max = settings.range;
+  input.disabled = false;
+
+  // Update UI text
+  document.getElementById('range-text').textContent = `Try to guess the number between 1 and ${settings.range}!`;
+  document.getElementById('guessButton').disabled = false;
+  document.getElementById('message').textContent = 'Make your first guess!';
+
+  // Initialize the game with new settings
+  initGame();
+}
 
 function initGame() {
-  secretNumber = Math.floor(Math.random() * 100) + 1;
-  attempts = maxAttempts;
+  if (!currentDifficulty) {
+    return;
+  }
+
+  const settings = difficultySettings[currentDifficulty];
+  secretNumber = Math.floor(Math.random() * settings.range) + 1;
+  attempts = settings.attempts;
+
   document.getElementById('remaining').textContent = `Remaining attempts: ${attempts}`;
   document.getElementById('message').textContent = 'Make your first guess!';
   document.getElementById('guessInput').value = '';
   document.getElementById('guessInput').disabled = false;
   document.getElementById('guessButton').disabled = false;
   document.getElementById('resetButton').style.display = 'none';
+  document.getElementById('difficulty-select').style.display = 'block';
 }
 
 function checkGuess() {
   const guessInput = document.getElementById('guessInput');
   const guess = parseInt(guessInput.value);
   const messageElement = document.getElementById('message');
+  const settings = difficultySettings[currentDifficulty];
 
-  if (isNaN(guess) || guess < 1 || guess > 100) {
-    messageElement.textContent = 'Please enter a valid number between 1 and 100.';
+  if (isNaN(guess) || guess < 1 || guess > settings.range) {
+    messageElement.textContent = `Please enter a valid number between 1 and ${settings.range}.`;
     return;
   }
 
@@ -51,7 +96,14 @@ function endGame(won) {
 
 function resetGame() {
   document.getElementById('message').style.color = 'black';
-  initGame();
+  document.getElementById('difficulty-select').style.display = 'block';
+  document.getElementById('range-text').textContent = 'Select a difficulty to start!';
+  document.getElementById('message').textContent = 'Choose your difficulty level';
+  document.getElementById('guessInput').disabled = true;
+  document.getElementById('guessButton').disabled = true;
+  document.getElementById('remaining').textContent = '';
+  document.getElementById('resetButton').style.display = 'none';
+  currentDifficulty = null;
 }
 
 
