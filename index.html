@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Number Guessing Game</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+    }
+
+    .container {
+      text-align: center;
+      background-color: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .message {
+      margin: 1rem 0;
+      font-size: 1.2rem;
+      min-height: 1.5em;
+    }
+
+    input {
+      padding: 0.5rem;
+      font-size: 1rem;
+      width: 100px;
+      margin: 0.5rem;
+    }
+
+    button {
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    button:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+    }
+
+    .remaining {
+      color: #666;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Number Guessing Game</h1>
+    <p>Try to guess the number between 1 and 100!</p>
+    <div class="message" id="message">Make your first guess!</div>
+    <input type="number" id="guessInput" min="1" max="100">
+    <button onclick="checkGuess()" id="guessButton">Guess</button>
+    <div class="remaining" id="remaining">Remaining attempts: 10</div>
+    <button onclick="resetGame()" id="resetButton"
+      style="display: none; margin-top: 1rem; background-color: #2196F3;">Play Again</button>
+  </div>
+
+  <script src="script.js">
+   
+  </script>
+</body>
+
+</html>
