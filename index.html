@@ -68,6 +68,24 @@
       margin-top: 1rem;
     }
 
+    /* Feature panels */
+    .panel {
+      margin-top: 12px;
+      padding: 10px 12px;
+      background: rgba(255,255,255,0.6);
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 8px;
+      font-size: 0.95rem;
+    }
+    .panel h3 { margin: 4px 0 8px; font-size: 1rem; }
+    .row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+    .row > * { margin: 2px 0; }
+    .muted { color: #555; font-size: 0.9rem; }
+    .mini-btn { padding: 6px 10px; font-size: 0.9rem; }
+    .info { font-weight: 600; }
+    input[type="text"] { padding: 6px 8px; border-radius: 6px; border: 1px solid #ddd; min-width: 220px; }
+    input[type="range"] { width: 160px; }
+
 
     @keyframes container-enter {
       from {
@@ -327,6 +345,40 @@
     <input type="number" id="guessInput" min="1" max="100" disabled>
     <button onclick="checkGuess()" id="guessButton" disabled>Guess</button>
     <div class="remaining" id="remaining"></div>
+
+    <!-- Hints and controls -->
+    <div class="panel" id="controlsPanel">
+      <div class="row">
+        <button class="mini-btn" id="hintButton" onclick="provideHint()" disabled>Hint</button>
+        <span class="muted" id="hintsInfo"></span>
+        <span class="info" id="bestDisplay"></span>
+      </div>
+      <div class="row">
+        <button class="mini-btn" id="restartButton" onclick="restartGame()" style="display:none; background:#4CAF50;">Restart (R)</button>
+        <button class="mini-btn" id="changeDifficultyButton" onclick="resetGame()" style="display:none; background:#2196F3;">Change Difficulty (C)</button>
+      </div>
+      <div id="hintText" class="muted" style="margin-top:6px;"></div>
+    </div>
+
+    <!-- Stats -->
+    <div class="panel" id="statsPanel">
+      <h3>Stats</h3>
+      <div class="muted" id="statsText">No data yet. Play a game!</div>
+    </div>
+
+    <!-- Audio Settings -->
+    <div class="panel" id="audioPanel">
+      <h3>Audio</h3>
+      <div class="row">
+        <label for="volumeSlider" class="muted">Volume</label>
+        <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.12">
+        <span id="volumeValue" class="muted">12%</span>
+      </div>
+      <div class="row">
+        <input type="text" id="audioUrlInput" placeholder="Paste audio URL (mp3/ogg)">
+        <button class="mini-btn" id="loadAudioUrlBtn">Load URL</button>
+      </div>
+    </div>
 
   </div>
 
