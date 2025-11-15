@@ -140,7 +140,7 @@ function initGame() {
   secretNumber = Math.floor(Math.random() * settings.range) + 1;
   attempts = settings.attempts;
 
-  // session bounds and hints
+  
   lowBound = 1; highBound = settings.range;
   maxHints = 2; hintsRemaining = maxHints;
   gameStartMs = Date.now();
@@ -150,7 +150,7 @@ function initGame() {
   document.getElementById('guessInput').value = '';
   document.getElementById('guessInput').disabled = false;
   document.getElementById('guessButton').disabled = false;
-  // hide reset button if present
+  
   const restartBtn = document.getElementById('restartButton');
   const changeBtn = document.getElementById('changeDifficultyButton');
   if (restartBtn) restartBtn.style.display = 'none';
@@ -217,7 +217,7 @@ function endGame(won) {
   if (changeBtn) changeBtn.style.display = 'inline-block';
   document.getElementById('message').style.color = won ? '#4CAF50' : '#f44336';
 
-  // update statistics
+ 
   const d = currentDifficulty;
   if (d) {
     const settings = difficultySettings[d];

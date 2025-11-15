@@ -1,0 +1,38 @@
+{
+  "name": "web3-guess-game",
+  "version": "1.0.0",
+  "description": "A web3-based number guessing game that integrates with blockchain technology.",
+  "main": "src/script.js",
+  "scripts": {
+    "start": "live-server public",
+    "build": "echo 'Build step not defined'",
+    "test": "hardhat test",
+    "deploy": "hardhat run scripts/deploy.js --network <network_name>"
+  },
+  "keywords": [
+    "web3",
+    "blockchain",
+    "guessing game",
+    "ethereum"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "ethers": "^5.0.0",
+    "web3": "^1.0.0",
+    "dotenv": "^10.0.0"
+  },
+  "devDependencies": {
+    "hardhat": "^2.0.0",
+    "chai": "^4.3.4",
+    "mocha": "^8.3.2"
+  },
+  "homepage": "https://github.com/yourusername/web3-guess-game",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yourusername/web3-guess-game.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/web3-guess-game/issues"
+  }
+}

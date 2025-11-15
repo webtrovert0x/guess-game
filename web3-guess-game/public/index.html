@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web3 Number Guessing Game</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.6.1/web3.min.js"></script>
+</head>
+
+<body>
+  <div class="bg-animated" aria-hidden="true">
+    <div class="bg-shape shape1"></div>
+    <div class="bg-shape shape2"></div>
+    <div class="bg-shape shape3"></div>
+    <div class="bg-shape shape4"></div>
+  </div>
+  <div class="container">
+    <h1>Web3 Number Guessing Game</h1>
+    <div id="wallet-status" class="message">Connecting to wallet...</div>
+    <div id="difficulty-select" style="margin-bottom: 1rem;">
+      <p>Select Difficulty:</p>
+      <button onclick="setDifficulty('easy')" style="background-color: #4CAF50;">Easy</button>
+      <button onclick="setDifficulty('medium')" style="background-color: #2196F3;">Medium</button>
+      <button onclick="setDifficulty('hard')" style="background-color: #f44336;">Hard</button>
+    </div>
+    <p id="range-text">Select a difficulty to start!</p>
+    <div class="message" id="message">Choose your difficulty level</div>
+    <input type="number" id="guessInput" min="1" max="100" disabled>
+    <button onclick="checkGuess()" id="guessButton" disabled>Guess</button>
+    <div class="remaining" id="remaining"></div>
+
+    <!-- Hints and controls -->
+    <div class="panel" id="controlsPanel">
+      <div class="row">
+        <button class="mini-btn" id="hintButton" onclick="provideHint()" disabled>Hint</button>
+        <span class="muted" id="hintsInfo"></span>
+        <span class="info" id="bestDisplay"></span>
+      </div>
+      <div class="row">
+        <button class="mini-btn" id="restartButton" onclick="restartGame()" style="display:none; background:#4CAF50;">Restart (R)</button>
+        <button class="mini-btn" id="changeDifficultyButton" onclick="resetGame()" style="display:none; background:#2196F3;">Change Difficulty (C)</button>
+      </div>
+      <div id="hintText" class="muted" style="margin-top:6px;"></div>
+    </div>
+
+    <!-- Stats -->
+    <div class="panel" id="statsPanel">
+      <h3>Stats</h3>
+      <div class="muted" id="statsText">No data yet. Play a game!</div>
+    </div>
+
+    <!-- Audio Settings -->
+    <div class="panel" id="audioPanel">
+      <h3>Audio</h3>
+      <div class="row">
+        <label for="volumeSlider" class="muted">Volume</label>
+        <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="0.12">
+        <span id="volumeValue" class="muted">12%</span>
+      </div>
+      <div class="row">
+        <input type="text" id="audioUrlInput" placeholder="Paste audio URL (mp3/ogg)">
+        <button class="mini-btn" id="loadAudioUrlBtn">Load URL</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- audio toggle control -->
+  <button id="audioToggle" class="audio-toggle" aria-pressed="false" aria-label="Toggle background audio">♪</button>
+  <!-- Hidden audio element and file picker for real music -->
+  <audio id="bgAudio" loop preload="auto"></audio>
+  <input id="audioFileInput" type="file" accept="audio/*" style="display:none" aria-hidden="true">
+
+  <script src="src/script.js"></script>
+</body>
+
+</html>
